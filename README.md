@@ -43,3 +43,19 @@ Inspect an older boot by index:
 ```
 
 This focuses on AMDGPU reset/timeouts, CPU watchdog or MCE/EDAC events, NVMe failures and PCIe/AER errors.
+
+## Create a crash report file
+
+Generate a timestamped report for the previous boot:
+
+```bash
+./collect-crash-report.sh
+```
+
+Or inspect an older boot, for example:
+
+```bash
+./collect-crash-report.sh -2
+```
+
+Reports are saved under `reports/` and ignored by Git by default, so local diagnostic data is not accidentally published.
