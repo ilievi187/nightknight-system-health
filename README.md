@@ -1,14 +1,17 @@
 # NightKnight System Health
 
-A tiny Bash system-health checker for Linux.
+A small Bash health checker for Linux, built for quick terminal diagnostics.
 
 It reports:
-- uptime and load
+- uptime and system load
 - RAM usage
 - root filesystem usage
-- CPU / GPU / NVMe temperatures from `lm_sensors`
+- CPU, GPU and NVMe temperatures via `lm_sensors`
+- discrete AMD GPU PCIe link, load and VRAM usage
+- AMDGPU error count for the current and previous boot
+- CPU/watchdog warning count
+- serious NVMe error-like messages
 - top CPU-consuming processes
-- a short summary
 
 ## Run
 
@@ -16,5 +19,11 @@ It reports:
 chmod +x system-health.sh
 ./system-health.sh
 ```
+
+## Notes
+
+The GPU section automatically picks the DRM device with the largest VRAM pool, so it works on systems that expose the integrated GPU and discrete AMD GPU in different card order.
+
+The kernel-health section uses `journalctl`, so persistent systemd journal logs are useful for checking the previous boot.
 
 Designed and tested on Omarchy / Arch Linux.
