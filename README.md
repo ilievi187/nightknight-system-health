@@ -27,3 +27,19 @@ The GPU section automatically picks the DRM device with the largest VRAM pool, s
 The kernel-health section uses `journalctl`, so persistent systemd journal logs are useful for checking the previous boot.
 
 Designed and tested on Omarchy / Arch Linux.
+
+## Diagnose a crash after reboot
+
+By default, inspect the previous boot:
+
+```bash
+./diagnose-last-boot.sh
+```
+
+Inspect an older boot by index:
+
+```bash
+./diagnose-last-boot.sh -2
+```
+
+This focuses on AMDGPU reset/timeouts, CPU watchdog or MCE/EDAC events, NVMe failures and PCIe/AER errors.
